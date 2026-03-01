@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../Components/Footer'
 
 export default function HomePage() {
   return (
@@ -6,7 +7,7 @@ export default function HomePage() {
       <HeroSection />
       <FeaturesSection />
       <QuickPathSection />
-      <FooterSection />
+      <Footer />
     </div>
   )
 }
@@ -112,60 +113,18 @@ function QuickPathSection() {
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {steps.map((step, i) => (
-          <>
-            <div key={step.num} style={{ flex: 1, background: '#21262d', border: `1px solid ${step.active ? '#238636' : '#30363d'}`, borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <React.Fragment key={step.num}>
+            <div style={{ flex: 1, background: '#21262d', border: `1px solid ${step.active ? '#238636' : '#30363d'}`, borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ fontSize: 11, color: step.active ? '#238636' : '#8b949e', fontWeight: 600, fontFamily: 'JetBrains Mono, monospace' }}>STEP {step.num}</div>
               <h4 style={{ fontWeight: 600, fontSize: 16, color: '#e6edf3', fontFamily: 'Inter, sans-serif' }}>{step.title}</h4>
               <p style={{ fontSize: 13, color: '#8b949e', lineHeight: 1.5, fontFamily: 'Inter, sans-serif' }}>{step.desc}</p>
             </div>
             {i < steps.length - 1 && (
-              <div key={`arrow-${i}`} style={{ padding: '0 8px', fontSize: 24, color: '#30363d', flexShrink: 0 }}>→</div>
+              <div style={{ padding: '0 8px', fontSize: 24, color: '#30363d', flexShrink: 0 }}>→</div>
             )}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>
-  )
-}
-
-function FooterSection() {
-  return (
-    <footer style={{ background: '#0a0d12', borderTop: '2px solid #238636', padding: '48px 0 28px', display: 'flex', flexDirection: 'column', gap: 28, margin: '0 -56px -48px', paddingLeft: 56, paddingRight: 56 }}>
-      {/* 3-column layout */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 48 }}>
-        {/* Brand column */}
-        <div style={{ width: 280, display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 20 }}>🐙</span>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 17, fontWeight: 700, color: '#e6edf3' }}>GitGit Aw</span>
-          </div>
-          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#8b949e' }}>Learn Git the Pinoy way!</div>
-          <p style={{ fontSize: 13, color: '#6e7681', lineHeight: 1.6, fontFamily: 'Inter, sans-serif' }}>A free, open-source learning resource for Pinoy developers. Libre at para sa lahat.</p>
-          <div style={{ display: 'inline-flex', alignSelf: 'flex-start', alignItems: 'center', gap: 8, background: '#21262d', border: '1px solid #30363d', borderRadius: 6, padding: '7px 12px' }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#8b949e' }}>🔗  yurialfrance/GitGitAw</span>
-          </div>
-        </div>
-        {/* Links column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, fontWeight: 700, color: '#8b949e' }}>LINKS</div>
-          <a href="#" style={{ fontSize: 13, color: '#238636', fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>→  Source Code</a>
-          <a href="#" style={{ fontSize: 13, color: '#8b949e', fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>→  Apache-2.0 License</a>
-          <a href="#" style={{ fontSize: 13, color: '#8b949e', fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>→  Report an Issue</a>
-        </div>
-        {/* Creator column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, fontWeight: 700, color: '#8b949e' }}>CREATED BY</div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: '#e6edf3', fontFamily: 'Inter, sans-serif' }}>Yuri Alfrance Egipto</div>
-          <a href="https://yuriegipto-ph.web.app" style={{ fontSize: 13, color: '#238636', fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>yuriegipto-ph.web.app</a>
-        </div>
-      </div>
-
-      <div style={{ height: 1, background: '#21262d' }} />
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#6e7681' }}>© 2026 GitGit Aw. Open source under Apache-2.0.</span>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#6e7681' }}>Made with ❤️ in the Philippines</span>
-      </div>
-    </footer>
   )
 }

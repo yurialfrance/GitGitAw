@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../Components/Footer'
 import gitHubLogo from '../../assets/github-60.svg'
 import gitLogo from '../../assets/git.svg'
 import windowsLogo from '../../assets/windows.svg'
@@ -12,6 +13,7 @@ export default function GetStarted() {
       <GitVsGitHubSection />
       <RequirementsSection />
       <InstallGitSection />
+      <Footer />
     </div>
   )
 }
