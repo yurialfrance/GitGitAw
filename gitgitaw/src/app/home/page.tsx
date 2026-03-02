@@ -19,30 +19,30 @@ function HeroSection() {
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 24 }}>
         {/* Badge */}
         <div style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>
-          <div style={{ padding: '6px 14px', background: '#1c2b1c', border: '1px solid #238636', borderRadius: 20 }}>
-            <span style={{ color: '#3fb950', fontFamily: 'JetBrains Mono, monospace', fontSize: 12, fontWeight: 500 }}>🌟  Libre at Open Source</span>
+          <div style={{ padding: '6px 14px', background: 'var(--active-bg)', border: '1px solid var(--active-border)', borderRadius: 20 }}>
+            <span style={{ color: 'var(--accent)', fontFamily: 'JetBrains Mono, monospace', fontSize: 12, fontWeight: 500 }}>🌟  Libre at Open Source</span>
           </div>
         </div>
         {/* Heading */}
-        <h1 style={{ fontSize: 52, fontWeight: 700, lineHeight: 1.15, color: '#e6edf3', fontFamily: 'Inter, sans-serif' }}>
+        <h1 style={{ fontSize: 52, fontWeight: 700, lineHeight: 1.15, color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif' }}>
           Handa ka na bang{'\n'}matuto ng Git?
         </h1>
         {/* Subtitle */}
-        <p style={{ fontSize: 18, color: '#8b949e', lineHeight: 1.6, fontFamily: 'Inter, sans-serif' }}>
+        <p style={{ fontSize: 18, color: 'var(--text-muted)', lineHeight: 1.6, fontFamily: 'Inter, sans-serif' }}>
           Step-by-step guide para sa mga Pinoy developers. Walang judgement, puro learning lang!
         </p>
         {/* CTAs */}
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          <a href="/lessons/getting-started" style={{ padding: '14px 28px', background: '#238636', color: '#ffffff', borderRadius: 8, fontWeight: 600, fontSize: 15, fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>
+          <a href="/lessons/getting-started" style={{ padding: '14px 28px', background: 'var(--accent-dim)', color: '#ffffff', borderRadius: 8, fontWeight: 600, fontSize: 15, fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>
             🚀  Let's Git
           </a>
-          <a href="#features" style={{ padding: '14px 28px', border: '1px solid #30363d', color: '#e6edf3', borderRadius: 8, fontWeight: 500, fontSize: 15, fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>
+          <a href="#features" style={{ padding: '14px 28px', border: '1px solid var(--border)', color: 'var(--text-primary)', borderRadius: 8, fontWeight: 500, fontSize: 15, fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}>
             Ano nga ba ang Git?
           </a>
         </div>
       </div>
 
-      {/* Right — code block */}
+      {/* Right — code block (intentionally always dark like a real terminal) */}
       <div style={{ width: 480, background: '#161b22', border: '1px solid #30363d', borderRadius: 10, overflow: 'hidden', padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 8 }}>
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 10 }}>
@@ -79,17 +79,17 @@ function FeaturesSection() {
   return (
     <div id="features" style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
       <div>
-        <h2 style={{ fontSize: 32, fontWeight: 700, color: '#e6edf3', fontFamily: 'Inter, sans-serif' }}>Bakit GitGit Aw?</h2>
-        <p style={{ color: '#8b949e', marginTop: 8, fontSize: 16, fontFamily: 'Inter, sans-serif' }}>Dinisenyo para sa mga Pinoy developers na gustong matuto nang tama.</p>
+        <h2 style={{ fontSize: 32, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif' }}>Bakit GitGit Aw?</h2>
+        <p style={{ color: 'var(--text-muted)', marginTop: 8, fontSize: 16, fontFamily: 'Inter, sans-serif' }}>Dinisenyo para sa mga Pinoy developers na gustong matuto nang tama.</p>
       </div>
       <div style={{ display: 'flex', gap: 20 }}>
         {features.map(f => (
-          <div key={f.title} style={{ flex: 1, background: '#21262d', border: '1px solid #30363d', borderRadius: 12, padding: 28, display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div style={{ width: 48, height: 48, background: '#1c2b1c', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>
+          <div key={f.title} style={{ flex: 1, background: 'var(--bg-tertiary)', border: '1px solid var(--border)', borderRadius: 12, padding: 28, display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ width: 48, height: 48, background: 'var(--active-bg)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>
               {f.icon}
             </div>
-            <h3 style={{ fontWeight: 600, fontSize: 18, color: '#e6edf3', fontFamily: 'Inter, sans-serif' }}>{f.title}</h3>
-            <p style={{ fontSize: 14, color: '#8b949e', lineHeight: 1.6, fontFamily: 'Inter, sans-serif' }}>{f.desc}</p>
+            <h3 style={{ fontWeight: 600, fontSize: 18, color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif' }}>{f.title}</h3>
+            <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.6, fontFamily: 'Inter, sans-serif' }}>{f.desc}</p>
           </div>
         ))}
       </div>
@@ -108,19 +108,19 @@ function QuickPathSection() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
       <div>
-        <h2 style={{ fontSize: 28, fontWeight: 700, color: '#e6edf3', fontFamily: 'Inter, sans-serif' }}>Saan ka magsisimula?</h2>
-        <p style={{ color: '#8b949e', marginTop: 8, fontSize: 15, fontFamily: 'Inter, sans-serif' }}>Sundan ang landas na ito para maging Git pro ka in no time!</p>
+        <h2 style={{ fontSize: 28, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif' }}>Saan ka magsisimula?</h2>
+        <p style={{ color: 'var(--text-muted)', marginTop: 8, fontSize: 15, fontFamily: 'Inter, sans-serif' }}>Sundan ang landas na ito para maging Git pro ka in no time!</p>
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {steps.map((step, i) => (
           <React.Fragment key={step.num}>
-            <div style={{ flex: 1, background: '#21262d', border: `1px solid ${step.active ? '#238636' : '#30363d'}`, borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ fontSize: 11, color: step.active ? '#238636' : '#8b949e', fontWeight: 600, fontFamily: 'JetBrains Mono, monospace' }}>STEP {step.num}</div>
-              <h4 style={{ fontWeight: 600, fontSize: 16, color: '#e6edf3', fontFamily: 'Inter, sans-serif' }}>{step.title}</h4>
-              <p style={{ fontSize: 13, color: '#8b949e', lineHeight: 1.5, fontFamily: 'Inter, sans-serif' }}>{step.desc}</p>
+            <div style={{ flex: 1, background: 'var(--bg-tertiary)', border: `1px solid ${step.active ? 'var(--active-border)' : 'var(--border)'}`, borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ fontSize: 11, color: step.active ? 'var(--accent-dim)' : 'var(--text-muted)', fontWeight: 600, fontFamily: 'JetBrains Mono, monospace' }}>STEP {step.num}</div>
+              <h4 style={{ fontWeight: 600, fontSize: 16, color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif' }}>{step.title}</h4>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5, fontFamily: 'Inter, sans-serif' }}>{step.desc}</p>
             </div>
             {i < steps.length - 1 && (
-              <div style={{ padding: '0 8px', fontSize: 24, color: '#30363d', flexShrink: 0 }}>→</div>
+              <div style={{ padding: '0 8px', fontSize: 24, color: 'var(--border)', flexShrink: 0 }}>→</div>
             )}
           </React.Fragment>
         ))}

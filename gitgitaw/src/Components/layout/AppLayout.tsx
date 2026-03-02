@@ -2,12 +2,13 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../layout/Sidebar";
 
 export default function AppLayout() {
-    return(
-        <div style={{display:"flex", minHeight: '100vh'}}>
-            <Sidebar />
-            <main style={{flex: 1, overflowY: 'auto'}}>
-            <Outlet />
-            </main>
-        </div>
-    )
+  return (
+    <div className="flex h-screen overflow-hidden">
+      <Sidebar />
+      {/* pt-12 offsets the fixed mobile top bar; removed on md+ */}
+      <main className="flex-1 overflow-y-auto h-screen pt-12 md:pt-0">
+        <Outlet />
+      </main>
+    </div>
+  );
 }

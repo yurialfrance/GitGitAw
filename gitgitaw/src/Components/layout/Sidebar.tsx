@@ -1,81 +1,192 @@
+import { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
-import { Home, Rocket, BookOpen, GitBranch, Github, Users, Zap, Terminal, FileText, Target, Trophy, MessageCircle, BookMarked, Settings } from "lucide-react"
+import {
+  Home, Rocket, BookOpen, GitBranch, Github, Users, Zap,
+  Terminal, FileText, Target, Trophy, MessageCircle, BookMarked,
+  Settings, Menu, X, Moon, Sun,
+} from "lucide-react"
 
 const navItems = [
-  { label: 'Home',                 to: '/',                            icon: Home },
-  { label: 'Getting Started',      to: '/lessons/getting-started',     icon: Rocket },
-  { label: 'The Basics',           to: '/lessons/the-basics',          icon: BookOpen },
-  { label: 'Branching & Merging',  to: '/lessons/branching-merging',   icon: GitBranch },
-  { label: 'GitHub Essentials',    to: '/lessons/github-essentials',   icon: Github },
-  { label: 'Collaboration',        to: '/lessons/collaboration',       icon: Users },
-  { label: 'Merge Conflicts',      to: '/lessons/merge-conflicts',     icon: Zap },
-  { label: 'Command Cheat Sheet',  to: '/lessons/cheat-sheet',         icon: Terminal },
-  { label: 'Conventional Commits', to: '/lessons/conventional-commits',icon: FileText },
-  { label: 'Practice Projects',    to: '/lessons/practice',            icon: Target },
-  { label: 'Challenges',           to: '/lessons/challenges',          icon: Trophy },
+  { label: 'Home',                 to: '/',                             icon: Home },
+  { label: 'Getting Started',      to: '/lessons/getting-started',      icon: Rocket },
+  { label: 'The Basics',           to: '/lessons/the-basics',           icon: BookOpen },
+  { label: 'Branching & Merging',  to: '/lessons/branching-merging',    icon: GitBranch },
+  { label: 'GitHub Essentials',    to: '/lessons/github-essentials',    icon: Github },
+  { label: 'Collaboration',        to: '/lessons/collaboration',        icon: Users },
+  { label: 'Merge Conflicts',      to: '/lessons/merge-conflicts',      icon: Zap },
+  { label: 'Command Cheat Sheet',  to: '/lessons/cheat-sheet',          icon: Terminal },
+  { label: 'Conventional Commits', to: '/lessons/conventional-commits', icon: FileText },
+  { label: 'Practice Projects',    to: '/lessons/practice',             icon: Target },
+  { label: 'Challenges',           to: '/lessons/challenges',           icon: Trophy },
 ]
 
 const bottomItems = [
-  { label: 'Community',  to: '/community', icon: MessageCircle },
-  { label: 'Glossary',   to: '/glossary',  icon: BookMarked },
-  { label: 'Settings',   to: '/settings',  icon: Settings },
+  { label: 'Community', to: '/community', icon: MessageCircle },
+  { label: 'Glossary',  to: '/glossary',  icon: BookMarked },
+  { label: 'Settings',  to: '/settings',  icon: Settings },
 ]
 
+const mono = { fontFamily: 'JetBrains Mono, monospace' }
+
 export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  // Dark mode: default to saved preference, fallback to dark
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem('theme') !== 'light'
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = isDark ? 'dark' : 'light'
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }, [isDark])
+
+  const close = () => setIsOpen(false)
+
   return (
-    <aside style={{ width: 240, minHeight: '100vh', background: '#161b22', borderRight: '1px solid #30363d', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
-      {/* Logo */}
-      <div style={{ padding: '24px 20px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontSize: 22 }}>🐙</span>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontWeight: 700, fontSize: 17, color: '#e6edf3' }}>GitGit Aw</span>
-        </div>
-        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#8b949e' }}>Learn Git the Pinoy way!</div>
+    <>
+      {/* ── Mobile top bar ─────────────────────────────────────── */}
+      <div
+        className="md:hidden fixed top-0 left-0 right-0 z-30 flex items-center gap-3 px-4 h-12 border-b"
+        style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)' }}
+      >
+        <button
+          onClick={() => setIsOpen(true)}
+          className="flex items-center p-1 cursor-pointer bg-transparent border-none"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          <Menu size={22} />
+        </button>
+        <span style={{ ...mono, fontWeight: 700, fontSize: 16, color: 'var(--text-primary)' }}>
+          🐙 GitGit Aw
+        </span>
       </div>
-      <div style={{ height: 1, background: '#30363d' }} />
 
-      {/* Main nav */}
-      <nav style={{ padding: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
-      {navItems.map(item => {
-        const Icon = item.icon
-        return (
-          <NavLink key={item.to} to={item.to} end={item.to === '/'}
-            style={({ isActive }) => ({
-              display: 'flex', alignItems: 'center', gap: 10,
-              padding: '10px 12px', borderRadius: 6,
-              fontFamily: 'JetBrains Mono, monospace', fontSize: 13,
-              fontWeight: isActive ? 500 : 400,
-              color: isActive ? '#e6edf3' : '#8b949e',
-              background: isActive ? '#1c2b1c' : 'transparent',
-              borderLeft: isActive ? '3px solid #238636' : '3px solid transparent',
-              textDecoration: 'none',
-            })}>
-            <Icon size={16} />
-            {item.label}
-          </NavLink>
-        )
-      })}
-      </nav>
+      {/* ── Backdrop ───────────────────────────────────────────── */}
+      {isOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/55 z-40"
+          onClick={close}
+        />
+      )}
 
-      <div style={{ flex: 1 }} />
-      <div style={{ height: 1, background: '#30363d' }} />
+      {/* ── Sidebar panel ──────────────────────────────────────── */}
+      <aside
+        className={[
+          'fixed md:sticky top-0 left-0 h-screen w-60',
+          'flex flex-col shrink-0 border-r',
+          'z-50 md:z-auto',
+          'transition-transform duration-300 ease-in-out md:transition-none',
+          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
+        ].join(' ')}
+        style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border)' }}
+      >
 
-      {/* Bottom nav */}
-      <nav style={{ padding: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {bottomItems.map(item => (
-          <NavLink key={item.to} to={item.to}
-            style={{ display: 'block', padding: '10px 12px', borderRadius: 6, fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: '#8b949e', textDecoration: 'none' }}>
-            {item.label}
-          </NavLink>
-        ))}
-        {/* Dark Mode toggle */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 12, gap: 8 }}>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#8b949e' }}>🌙  Dark Mode</span>
-          <div style={{ width: 44, height: 24, background: '#238636', borderRadius: 12, padding: 2, display: 'flex', justifyContent: 'flex-end' }}>
-            <div style={{ width: 20, height: 20, background: '#ffffff', borderRadius: 10 }} />
+        {/* Logo */}
+        <div className="flex flex-col gap-1.5 px-5 pt-6 pb-4 shrink-0">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <span className="text-[22px]">🐙</span>
+              <span style={{ ...mono, fontWeight: 700, fontSize: 17, color: 'var(--text-primary)' }}>
+                GitGit Aw
+              </span>
+            </div>
+            {/* Close button — mobile only */}
+            <button
+              onClick={close}
+              className="md:hidden flex items-center p-1 cursor-pointer bg-transparent border-none"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              <X size={18} />
+            </button>
           </div>
+          <span style={{ ...mono, fontSize: 11, color: 'var(--text-muted)' }}>
+            Learn Git the Pinoy way!
+          </span>
         </div>
-      </nav>
-    </aside>
+
+        <div className="h-px shrink-0" style={{ background: 'var(--border)' }} />
+
+        {/* Main nav — scrollable */}
+        <nav className="sidebar-nav flex-1 overflow-y-auto flex flex-col gap-0.5 p-2">
+          {navItems.map(({ label, to, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === '/'}
+              onClick={close}
+              style={({ isActive }) => ({
+                ...mono,
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '10px 12px', borderRadius: 6,
+                fontSize: 13,
+                fontWeight: isActive ? 500 : 400,
+                color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+                background: isActive ? 'var(--active-bg)' : 'transparent',
+                borderLeft: isActive ? '3px solid var(--active-border)' : '3px solid transparent',
+                textDecoration: 'none',
+                transition: 'background 0.15s, color 0.15s',
+              })}
+            >
+              <Icon size={16} />
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="h-px shrink-0" style={{ background: 'var(--border)' }} />
+
+        {/* Bottom nav */}
+        <nav className="flex flex-col gap-0.5 p-2 shrink-0">
+          {bottomItems.map(({ label, to, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              onClick={close}
+              style={{
+                ...mono,
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '10px 12px', borderRadius: 6,
+                fontSize: 13, color: 'var(--text-muted)',
+                textDecoration: 'none',
+              }}
+            >
+              <Icon size={16} />
+              {label}
+            </NavLink>
+          ))}
+
+          {/* Dark Mode toggle */}
+          <button
+            onClick={() => setIsDark(d => !d)}
+            className="flex items-center justify-between w-full px-3 py-3 rounded-md cursor-pointer bg-transparent border-none"
+            style={{ gap: 8 }}
+          >
+            <span className="flex items-center gap-2.5" style={{ ...mono, fontSize: 12, color: 'var(--text-muted)' }}>
+              {isDark ? <Moon size={14} /> : <Sun size={14} />}
+              {isDark ? 'Dark Mode' : 'Light Mode'}
+            </span>
+
+            {/* Toggle pill */}
+            <div
+              className="relative shrink-0 rounded-full transition-colors duration-300"
+              style={{
+                width: 44, height: 24,
+                background: isDark ? 'var(--accent-dim)' : 'var(--border)',
+                padding: 2,
+              }}
+            >
+              <div
+                className="absolute top-0.5 rounded-full bg-white transition-all duration-300"
+                style={{
+                  width: 20, height: 20,
+                  left: isDark ? 'calc(100% - 22px)' : 2,
+                }}
+              />
+            </div>
+          </button>
+        </nav>
+      </aside>
+    </>
   )
 }

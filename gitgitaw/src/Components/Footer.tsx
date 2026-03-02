@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: '#0a0d12',
+        background: 'var(--bg-footer)',
         borderTop: '2px solid var(--accent-dim)',
         padding: '48px 56px 28px',
         display: 'flex',
@@ -77,12 +77,12 @@ export default function Footer() {
           </div>
           
           <a
-            href="https://yuriegipto-ph.web.app"
+            href="https://yuriegipto.dev"
             target="_blank"
             rel="noreferrer"
             style={{ fontSize: 13, color: 'var(--accent-dim)', fontFamily: 'Inter, sans-serif', textDecoration: 'none' }}
           >
-            yuriegipto-ph.web.app
+            yuriegipto.dev
           </a>
 
           <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'Inter, sans-serif' }}>
